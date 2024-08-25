@@ -72,11 +72,11 @@ export abstract class AbstractRepo {
             }
             default: {
               // 其他错误
-              const errMsg = msg || '请求出错'
+              const errMsg = (Boolean(msg)) || '请求出错'
               // 提示错误信息
               // 抛出错误 请求发送方法调用的位置可以捕获到此错误
               void Promise.reject()
-              throw new Error(errMsg)
+              throw new Error(String(errMsg))
             }
           }
         },
@@ -110,50 +110,16 @@ export abstract class AbstractRepo {
   }
 
   async post<T, D>(url: Input, data: D, options?: Options & { json: never }) {
-    return await this.request.post(url, Object.assign(options ?? {}, { json: data })).json<T>()
+    return this.request.post(url, Object.assign(options ?? {}, { json: data })).json<T>()
   }
 
   async get<T>(url: Input, options?: Options) {
-    return await this.request.get(url, options).json<T>()
+    return this.request.get(url, options).json<T>()
   }
 
   async SSE(url: Input, options?: Options) {
     const controller = new AbortController()
     const { signal } = controller
-    return await this.request.get(url, Object.assign(options ?? {}, { signal }))
+    return this.request.get(url, Object.assign(options ?? {}, { signal }))
   }
 }
-
-// function teeStream() {
-//   const teedOff = stream.tee()
-//   fetchStream(teedOff[0], list2)
-//   fetchStream(teedOff[1], list3)
-// }
-
-// function fetchStream(stream, list) {
-//   const reader = stream.getReader()
-//   let charsReceived = 0
-
-//   // read() returns a promise that resolves
-//   // when a value has been received
-//   reader.read().then(function processText({ done, value }) {
-//     // Result objects contain two properties:
-//     // done  - true if the stream has already given you all its data.
-//     // value - some data. Always undefined when done is true.
-//     if (done) {
-//       console.log('Stream complete')
-//       return
-//     }
-
-//     // value for fetch streams is a Uint8Array
-//     charsReceived += value.length
-//     const chunk = value
-//     const listItem = document.createElement('li')
-//     listItem.textContent
-//       = `Read ${charsReceived} characters so far. Current chunk = ${chunk}`
-//     list.appendChild(listItem)
-
-//     // Read some more, and call this function again
-//     return reader.read().then(processText)
-//   })
-// }

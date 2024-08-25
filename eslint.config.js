@@ -5,10 +5,8 @@ import unocss from '@unocss/eslint-plugin'
 export default antfu(
   {
     typescript: {
-      tsconfigPath: [
+      tsconfigPath:
         'tsconfig.json',
-        'tsconfig.node.json',
-      ],
     },
   },
   unocss.configs.flat,

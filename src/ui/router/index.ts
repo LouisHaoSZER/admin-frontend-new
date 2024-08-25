@@ -14,6 +14,8 @@ export const router = createRouter({
 
 router.afterEach((to) => {
   const items = [import.meta.env.VITE_APP_TITLE]
-  to.meta.title != null && items.unshift(to.meta.title)
+  if (to.meta.parentTitle != null) {
+    items.unshift(to.meta.parentTitle)
+  }
   document.title = items.join(' · ')
 })
