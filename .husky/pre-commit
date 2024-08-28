@@ -1,5 +1,5 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-pnpm run lint $1
+pnpm run lint:fix $1
 pnpm run type-check $1

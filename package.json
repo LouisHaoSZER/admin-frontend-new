@@ -13,7 +13,8 @@
     "release": "commit-and-tag-version --sign",
     "lint": "eslint .",
     "type-check": "vue-tsc --noEmit",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "prepare": "husky install"
   },
   "commitlint": {
     "extends": [
