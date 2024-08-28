@@ -1,0 +1,72 @@
+# 任务名称
+name: ALUAD
+# 触发条件、push到main分支或者pull request到main分支时触发等
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+# 工作任务，可以有多个，每个任务可以有多个步骤，每个任务之间是并行执行的，环境配置互相隔离，不污染
+jobs:
+  # 检查代码风格
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20.x
+          cache: pnpm
+
+      - name: Install
+        run: pnpm i
+
+      - name: Lint
+        run: pnpm run lint
+  # 类型检查
+  typecheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20.x
+          cache: pnpm
+
+      - name: Install
+        run: pnpm i
+
+      - name: TypeCheck
+        run: pnpm run type-check
+
+  build:
+    strategy:
+      matrix:
+        node_version: [20.x]
+        os: [ubuntu-latest]
+        build_cmd: ['build']
+      fail-fast: false
+
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v2
+
+      - name: Set node version to ${{ matrix.node_version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node_version }}
+          cache: pnpm
+
+      - name: Install
+        run: pnpm i
+
+      - name: Build
+        run: pnpm run ${{ matrix.build_cmd }}
