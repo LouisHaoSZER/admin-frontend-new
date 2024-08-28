@@ -8,13 +8,13 @@
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
-    "postinstall": "husky install",
     "preinstall": "npx only-allow pnpm",
     "release": "commit-and-tag-version --sign",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "lint:staged": "lint-staged",
-    "type-check": "vue-tsc --noEmit"
+    "type-check": "vue-tsc --noEmit",
+    "prepare": "husky"
   },
   "commitlint": {
     "extends": [
@@ -57,9 +57,10 @@
     "vite-plugin-vue-layouts": "^0.11.0",
     "vue-tsc": "^2.0.29"
   },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
+  },
   "lint-staged": {
-    "**/*.{ts,vue}": [
-      "eslint --cache --fix"
-    ]
+    "*": "eslint --fix"
   }
 }
