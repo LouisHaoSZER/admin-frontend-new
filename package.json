@@ -12,9 +12,9 @@
     "preinstall": "npx only-allow pnpm",
     "release": "commit-and-tag-version --sign",
     "lint": "eslint .",
-    "type-check": "vue-tsc --noEmit",
     "lint:fix": "eslint . --fix",
-    "prepare": "husky install"
+    "lint:staged": "lint-staged",
+    "type-check": "vue-tsc --noEmit"
   },
   "commitlint": {
     "extends": [
