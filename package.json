@@ -10,7 +10,9 @@
     "preview": "vite preview",
     "postinstall": "husky install",
     "preinstall": "npx only-allow pnpm",
-    "release": "commit-and-tag-version --sign"
+    "release": "commit-and-tag-version --sign",
+    "lint": "eslint .",
+    "type-check": "vue-tsc --noEmit"
   },
   "commitlint": {
     "extends": [

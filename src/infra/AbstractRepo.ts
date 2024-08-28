@@ -22,12 +22,13 @@ export abstract class AbstractRepo {
       ],
       afterResponse: [
         /** 每次响应之后 根据响应的code进行错误处理 */
-        async (_request, _options, response) => {
+        async (_request, _options, response: Record<any, any>) => {
           // 忽略HTTP状态码不为 200 的响应
           if (response.status !== 200)
             return
 
           // 判断 如果响应头的 Content-Type 不是 JSON 则忽略
+          // eslint-disable-next-line ts/strict-boolean-expressions
           if (!response.headers.get('Content-Type')?.toLowerCase().includes('application/json'))
             return
 

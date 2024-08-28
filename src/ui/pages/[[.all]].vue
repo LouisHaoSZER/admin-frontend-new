@@ -4,6 +4,9 @@
   </route>
 
 <script setup lang="ts">
+import { onBeforeRouteLeave, useRouter } from 'vue-router'
+import { onMounted, ref } from 'vue'
+
 const router = useRouter()
 
 const data = ref({

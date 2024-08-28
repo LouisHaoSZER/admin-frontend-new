@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { defineEmits, defineProps, ref } from 'vue'
+
 const props = defineProps({
   name: {
     type: String,
