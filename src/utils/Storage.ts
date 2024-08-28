@@ -41,7 +41,7 @@ export default class Storage {
    */
   get(key: string, def: any = null) {
     const item = this.storage.getItem(this.getKey(key))
-    if (item) {
+    if (item !== null) {
       try {
         const data = JSON.parse(item)
         const { value, expire } = data
@@ -51,8 +51,9 @@ export default class Storage {
 
         this.remove(key)
       }
-      catch (e) {
-        return def
+      catch (e: any) {
+        console.error(e)
+        return
       }
     }
     return def

@@ -49,7 +49,7 @@ jobs:
       matrix:
         node_version: [20.x]
         os: [ubuntu-latest]
-        build_cmd: ['build']
+        build_cmd: [build]
       fail-fast: false
 
     runs-on: ${{ matrix.os }}
