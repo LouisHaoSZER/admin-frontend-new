@@ -1,12 +1,13 @@
 import { createApp } from 'vue'
-import piniaPersistPlugin from 'pinia-plugin-persistedstate'
-import pinia from './ui/stores'
+
+import { setupStore } from './ui/stores'
 import App from './ui/App.vue'
 import { router } from './ui/router'
 import 'virtual:uno.css'
 import 'reflect-metadata'
+import 'tdesign-vue-next/es/style/index.css'
 
-createApp(App)
-  .use(pinia.use(piniaPersistPlugin))
-  .use(router)
-  .mount('#app')
+const app = createApp(App)
+setupStore(app) // 全局注册pinia
+app.use(router)
+app.mount('#app')

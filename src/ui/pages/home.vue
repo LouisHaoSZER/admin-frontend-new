@@ -5,15 +5,7 @@
 </route>
 
 <script setup lang="ts">
-const loading = ref(false)
 
-onMounted(() => {
-  loading.value = true
-
-  setTimeout(() => {
-    loading.value = false
-  }, 1000)
-})
 </script>
 
 <template>

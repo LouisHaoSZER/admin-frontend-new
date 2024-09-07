@@ -12,6 +12,13 @@ export const router = createRouter({
   },
 })
 
+router.beforeEach((to, _from, next) => {
+  if (to.path === '/') {
+    next({ path: '/home' })
+  }
+  next()
+})
+
 router.afterEach((to) => {
   const items = [import.meta.env.VITE_APP_TITLE]
   if (to.meta.parentTitle != null) {

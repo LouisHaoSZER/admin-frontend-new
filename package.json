@@ -22,9 +22,8 @@
     ]
   },
   "dependencies": {
-    "@varlet/ui": "^3.3.16",
-    "ky": "^1.7.1",
-    "monaco-editor": "^0.51.0",
+    "@splinetool/runtime": "^1.9.21",
+    "axios": "^1.7.7",
     "pinia": "^2.2.2",
     "pinia-plugin-persistedstate": "^3.2.1",
     "reflect-metadata": "^0.2.2",
@@ -40,7 +39,6 @@
     "@commitlint/config-conventional": "^19.4.1",
     "@types/eslint": "^9.6.1",
     "@unocss/eslint-config": "^0.62.3",
-    "@varlet/import-resolver": "^3.3.16",
     "@vitejs/plugin-vue": "^5.1.2",
     "@vue/tsconfig": "^0.5.1",
     "commit-and-tag-version": "^12.4.2",
