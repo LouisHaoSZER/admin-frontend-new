@@ -24,6 +24,7 @@
   "dependencies": {
     "@splinetool/runtime": "^1.9.21",
     "axios": "^1.7.7",
+    "nprogress": "^0.2.0",
     "pinia": "^2.2.2",
     "pinia-plugin-persistedstate": "^3.2.1",
     "reflect-metadata": "^0.2.2",
@@ -31,13 +32,13 @@
     "tdesign-vue-next": "^1.9.9",
     "tsyringe": "^4.8.0",
     "vue": "^3.4.38",
-    "vue-router": "^4.4.3",
-    "vue-uuid": "^3.0.0"
+    "vue-router": "^4.4.3"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.27.3",
     "@commitlint/config-conventional": "^19.4.1",
     "@types/eslint": "^9.6.1",
+    "@types/nprogress": "^0.2.3",
     "@unocss/eslint-config": "^0.62.3",
     "@vitejs/plugin-vue": "^5.1.2",
     "@vue/tsconfig": "^0.5.1",
