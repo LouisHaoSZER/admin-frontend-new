@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router/auto'
 import { setupLayouts } from 'virtual:generated-layouts'
+import { createRouteGuards } from './core/RoutesGuards'
 import '@/ui/stores'
 
 const history = createWebHistory()
@@ -12,17 +13,5 @@ export const router = createRouter({
   },
 })
 
-router.beforeEach((to, _from, next) => {
-  if (to.path === '/') {
-    next({ path: '/home' })
-  }
-  next()
-})
-
-router.afterEach((to) => {
-  const items = [import.meta.env.VITE_APP_TITLE]
-  if (to.meta.parentTitle != null) {
-    items.unshift(to.meta.parentTitle)
-  }
-  document.title = items.join(' · ')
-})
+// 注册路由守卫
+createRouteGuards(router)

@@ -10,7 +10,7 @@
 
 <template>
   <div
-    class="m-5 h-full"
+    class="m-5 h-100vh"
   >
     this is page 1
   </div>

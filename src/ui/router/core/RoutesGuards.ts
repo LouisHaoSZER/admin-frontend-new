@@ -22,9 +22,10 @@ export function createRouteGuards(router: Router) {
     // 1. 判断是否需要登录
     const userStore = useUserStore()
     if (userStore.authInfo.accessToken !== undefined && userStore.authInfo.accessToken.length >= 57) {
+      console.info('已经登陆')
       // 已经登陆后
       // 1. 判断是否访问的是login登录界面
-      if (to.path === RouteConstant.LOGIN_PATH) {
+      if (to.path === RouteConstant.LOGIN_PATH || to.path === '/') {
         // 1.1 如果已经登陆 重定向到首页
         next({ path: RouteConstant.HOME_PATH })
         NProgress.done()
@@ -55,7 +56,11 @@ export function createRouteGuards(router: Router) {
   router.afterEach((to: RouteLocationNormalized, from: RouteLocationNormalized, failure?: NavigationFailure | void) => {
     console.info('路由跳转完成', to, from, failure)
     NProgress.done() // 结束进度条
-    // TODO:更新网页Tag页签标题和icon
+    const items = [import.meta.env.VITE_APP_TITLE]
+    if (to.meta.parentTitle != null) {
+      items.unshift(to.meta.parentTitle)
+    }
+    document.title = items.join(' · ')
   })
   // 路由错误处理
   router.onError((error, to: RouteLocationNormalized, form: RouteLocationNormalizedLoaded) => {

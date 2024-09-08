@@ -1,13 +1,11 @@
 <script setup lang="ts">
 import type { HeadMenuProps } from 'tdesign-vue-next'
 import { ref } from 'vue'
-
-// import { useThemeStore } from '../stores/theme'
+import { useTheme } from '@/hooks/useTheme'
 
 const router = useRouter()
 
-// const title = import.meta.env.VITE_APP_TITLE
-// const theme = useThemeStore()
+const { theme, toggleTheme } = useTheme()
 
 // 滑动框
 const menuValue = ref('home')
@@ -22,13 +20,14 @@ const changeHandler: HeadMenuProps['onChange'] = (active) => {
       <t-head-menu
         v-model="menuValue"
         height="120px"
+        class="fixed"
         @change="changeHandler"
       >
         <template #logo>
           <img
             width="136"
             class="logo"
-            src="https://bdi.sztu.edu.cn/images/index-logo2.png"
+            src="../../assets/logo.png"
             alt="logo"
           >
         </template>
@@ -63,9 +62,12 @@ const changeHandler: HeadMenuProps['onChange'] = (active) => {
           Status
         </t-menu-item>
         <template #operations>
-          <!-- <a href="javascript:;"><t-icon
+          <a
+            href="javascript:;"
+            @click="toggleTheme"
+          ><t-icon
             class="t-menu__operations-icon"
-            name="search"
+            :name="theme"
           /></a>
           <a href="javascript:;"><t-icon
             class="t-menu__operations-icon"
@@ -73,8 +75,8 @@ const changeHandler: HeadMenuProps['onChange'] = (active) => {
           /></a>
           <a href="javascript:;"><t-icon
             class="t-menu__operations-icon"
-            name="home"
-          /></a> -->
+            name="setting"
+          /></a>
         </template>
       </t-head-menu>
     </t-header>
@@ -90,13 +92,61 @@ const changeHandler: HeadMenuProps['onChange'] = (active) => {
             <template #icon>
               <t-icon name="dashboard" />
             </template>
-            功能分区
+            仪表盘
+          </t-menu-item>
+          <t-menu-item value="resource">
+            <template #icon>
+              <t-icon name="server" />
+            </template>
+            资源列表
+          </t-menu-item>
+          <t-menu-item value="root">
+            <template #icon>
+              <t-icon name="root-list" />
+            </template>
+            根目录
+          </t-menu-item>
+          <t-menu-item value="control-platform">
+            <template #icon>
+              <t-icon name="control-platform" />
+            </template>
+            调度平台
+          </t-menu-item>
+          <t-menu-item value="precise-monitor">
+            <template #icon>
+              <t-icon name="precise-monitor" />
+            </template>
+            调度平台
+          </t-menu-item>
+          <t-menu-item value="mail">
+            <template #icon>
+              <t-icon name="mail" />
+            </template>
+            消息区
+          </t-menu-item>
+          <t-menu-item value="user-circle">
+            <template #icon>
+              <t-icon name="user-circle" />
+            </template>
+            个人中心
+          </t-menu-item>
+          <t-menu-item value="play-circle">
+            <template #icon>
+              <t-icon name="play-circle" />
+            </template>
+            视频区
+          </t-menu-item>
+          <t-menu-item value="edit1">
+            <template #icon>
+              <t-icon name="edit-1" />
+            </template>
+            资源编辑
           </t-menu-item>
         </t-menu>
       </t-aside>
       <t-layout>
         <t-content>
-          <div>
+          <div style="height: 100vh; overflow-y: scroll;">
             <router-view />
           </div>
         </t-content>
