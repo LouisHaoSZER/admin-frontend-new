@@ -10,7 +10,7 @@ import { onMounted, ref } from 'vue'
 const router = useRouter()
 
 const data = ref({
-  intervalId: Number.NaN,
+  intervalId: setTimeout(() => {}, 0),
   countdown: 10,
 })
 

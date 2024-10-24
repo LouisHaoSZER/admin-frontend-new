@@ -23,3 +23,9 @@ dist-ssr
 *.sln
 *.sw?
 /src/types
+
+# VitePress
+# 先不传到仓库
+docs/*
+.vitepress
+docs/.vitepress/dist

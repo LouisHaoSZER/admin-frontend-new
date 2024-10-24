@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { HeadMenuProps } from 'tdesign-vue-next'
+import type { Drawer, HeadMenuProps } from 'tdesign-vue-next'
 import { ref } from 'vue'
 import { useTheme } from '@/hooks/useTheme'
 
@@ -12,6 +12,8 @@ const menuValue = ref('home')
 const changeHandler: HeadMenuProps['onChange'] = (active) => {
   menuValue.value = active as string
 }
+
+const drawerRef = ref<InstanceType<typeof Drawer> & { handleClick: () => void }>()
 </script>
 
 <template>
@@ -76,6 +78,7 @@ const changeHandler: HeadMenuProps['onChange'] = (active) => {
           <a href="javascript:;"><t-icon
             class="t-menu__operations-icon"
             name="setting"
+            @click="drawerRef?.handleClick()"
           /></a>
         </template>
       </t-head-menu>
@@ -92,4 +95,5 @@ const changeHandler: HeadMenuProps['onChange'] = (active) => {
       </t-layout>
     </t-layout>
   </t-layout>
+  <Drawer ref="drawerRef" />
 </template>

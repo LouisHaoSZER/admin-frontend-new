@@ -99,9 +99,12 @@ async function handleLoading() {
             Button 封装模版实例
           </t-tag>
           <LoadingButton
+            icon="thumb-up"
             @click="handleLoading"
           >
-            加载按钮
+            <template #label>
+              加载按钮
+            </template>
           </LoadingButton>
         </t-space>
       </t-card>
