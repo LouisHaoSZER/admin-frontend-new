@@ -35,5 +35,5 @@
     "skipLibCheck": true
   },
   "references": [{ "path": "./tsconfig.node.json" }],
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "docs/blogConfig/**/*.ts", "docs/**/*.ts"]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "../docs/docs/blogConfig/**/*.ts", "../docs/docs/**/*.ts", "../../packages/ui/global.d.ts"]
 }

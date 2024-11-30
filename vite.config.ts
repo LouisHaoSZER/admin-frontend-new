@@ -1,5 +1,5 @@
-import path from 'node:path'
 import type { UserConfig } from 'vite'
+import path from 'node:path'
 import { defineConfig } from 'vite'
 import { createVitePlugins } from './vite/plugins'
 
@@ -13,6 +13,7 @@ export default defineConfig((_configEnv): UserConfig => {
       alias: {
         '@': path.resolve(__dirname, 'src'),
       },
+      extensions: ['.js', '.ts', '.jsx', '.tsx', '.vue', '.cjs', '.mjs', '.json', '.vue'],
     },
     server: {
       open: true,
